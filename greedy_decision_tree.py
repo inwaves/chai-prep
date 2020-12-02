@@ -59,7 +59,7 @@ class DecisionTree:
             subtree = self.decision_tree_learning(exs, training_set, remaining_attributes)
             
             # add a new branch for the current tree for the current value of the attribute; its subtree is the one generated above
-            # TODO: how do I represent branches?
+            # TODO: is this a good way to represent branches?
             
             branch = best_attr + " = " + value
             tree[branch] = subtree
@@ -67,6 +67,8 @@ class DecisionTree:
         return tree
         
     def importance(self, attr, training_set):
-        # calculate the information gain of the attribute
+        # calculate the information gain of the attribute as the reduction in entropy
+        
+        # calculate total entropy for the output
         # TODO: implement the information gain
         pass
