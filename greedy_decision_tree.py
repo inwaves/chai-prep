@@ -18,10 +18,10 @@ class DecisionTree:
             training_set (np.ndarray): the training set, an (m x n) matrix of attribute values for all examples, last column is the outputs/labels
             attributes (list): a list of attributes to structure this decision tree around
         """
-        self.all_attributes = attributes
-        self.training_set = training_set
         
-    def decision_tree_learning(training_set, parent_training_set, attributes):
+        self.tree = self.decision_tree_learning(training_set, training_set, attributes)
+        
+    def decision_tree_learning(self, training_set, parent_training_set, attributes):
         
         # if no examples for this tree, return the most common output for parent examples
         if training_set == None:
@@ -45,23 +45,26 @@ class DecisionTree:
                 
         # start a new tree whose root is the test node for that attribute
         remaining_attributes = [attr for attr in attributes if attr != best_attr]
-        tree = DecisionTree(training_set, remaining_attributes)
+        tree = self.decision_tree_learning(training_set, remaining_attributes)
         
         # get each value of the attributes
-        
         unique_attribute_values = np.unique(training_set[:, attributes.index(best_attr)])
+        
         # for each value of the attribute
         for value in unique_attribute_values:
             # get all the examples whose attribute value is that value: exs
-            exs = [x in training_set if x[attributes.index(best_attr)] == value]
+            exs = [x for x in training_set if x[attributes.index(best_attr)] == value]
             
             # generate a subtree: decision_tree_learning(exs, all attributes except the one picked, current examples)
-            subtree = decision_tree_learning(exs, training_set, remaining_attributes)
+            subtree = self.decision_tree_learning(exs, training_set, remaining_attributes)
             
             # add a new branch for the current tree for the current value of the attribute; its subtree is the one generated above
             # TODO: how do I represent branches?
+            
+            branch = best_attr + " = " + value
+            tree[branch] = subtree
 
-        # return tree 
+        return tree
         
     def importance(self, attr, training_set):
         # calculate the information gain of the attribute
