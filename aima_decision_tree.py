@@ -1,14 +1,25 @@
 import numpy as np
 
+########
+# input: an (m x n+1) numpy matrix of the form
+#          a1  a2  a3  ... an  b
+#   x1    v11 v12 v13 ... v1n b1
+#   x2    v21 v22 v23 ... v2n b2
+#   x3    v31 v32 v33 ... v3n b3
+#   ...   ... ... ... ... ... ...
+#   xm    vm1 vm2 vm3 ... vmn bm
+#   where x are examples, a are attributes and b is the output for that example
+# 
+# output: a boolean value, true or false
+#
+########
 
-# input is an (m x n) numpy matrix of the form
-#       a1  a2  a3  ... an  b
-# x1    v11 v12 v13 ... v1n b1
-# x2    v21 v22 v23 ... v2n b2
-# x3    v31 v32 v33 ... v3n b3
-# ...   ... ... ... ... ... ...
-# xm    vm1 vm2 vm3 ... vmn bm
-# where x are examples, a are attributes and b is the output for that example
+# until this looks more like decision_tree.py, I won't start the assessment
+# TODO: solve the simple case, then generalise, will_wait.py
+# TODO: find a good OOP representation of the tree
+# TODO: add support for missing (or unseen) attributes, prune the tree to prevent overfitting,  add support for regression
+
+
 
 class DecisionTree:
     def __init__(self, training_set, attributes):
@@ -59,16 +70,11 @@ class DecisionTree:
             subtree = self.decision_tree_learning(exs, training_set, remaining_attributes)
             
             # add a new branch for the current tree for the current value of the attribute; its subtree is the one generated above
-            # TODO: is this a good way to represent branches?
-            
             branch = best_attr + " = " + value
             tree[branch] = subtree
 
         return tree
         
     def importance(self, attr, training_set):
-        # calculate the information gain of the attribute as the reduction in entropy
-        
-        # calculate total entropy for the output
-        # TODO: implement the information gain
+        # TODO: calculate the information gain of the attribute as the reduction in entropy
         pass

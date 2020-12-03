@@ -10,3 +10,4 @@ function decision_tree_learning(examples, attributes, parent_examples) returns t
             subtree <- decision_tree_learning(exs, attributes-A, examples)
             add a branch to tree with label (a = v_k) and subtree subtree
         return tree
+
