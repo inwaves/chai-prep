@@ -1,8 +1,5 @@
-import numpy as np
-from numpy.core.numerictypes import maximum_sctype
-
 class DataSet:
-    def __init__(self, examples, attr_names, target_index) -> None:
+    def __init__(self, examples: list, attr_names: list, target_index: int) -> None:
         self.examples = examples
         self.attr_names = attr_names
         self.attr = range(len(attr_names))
@@ -32,7 +29,7 @@ class Leaf:
         self.examples = result
         
 class DecisionNode:
-    def __init__(self, attr, branches) -> None:
+    def __init__(self, attr: str, branches: dict=None) -> None:
         self.attr = attr
         self.branches = branches
         
@@ -61,12 +58,21 @@ class DecisionTreeLearner:
 
         # no stoppage? continue with algorithm
         # find the best attribute
+        attr = self.find_best_attribute(examples, attributes)
+        tree = DecisionNode(attr)
+        
+        attributes.pop(attr)    # remove the attribute we've just used
         
         # use the current node to expand values for that attribute
-        
-        # store the possible values as branches leading to other nodes
+        for val in self.dataset.unique_values(examples, attr):
+            subtree = self.decision_tree_learner(self.dataset.examples_with_value(examples, val),
+                                                 attributes,
+                                                 examples)
+            tree.branches[val] = subtree
         
         return tree
     
     def find_best_attribute(self, examples: list, attributes: list) -> int:
-        
+        pass
+    
+    
