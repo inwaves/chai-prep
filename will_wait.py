@@ -35,6 +35,9 @@ class Leaf:
     def display(self):
         print("RESULT =", self.result)
 
+    def __call__(self, example):
+        return self.result
+
     def __repr__(self):
         return repr(self.result)
 
@@ -52,15 +55,12 @@ class DecisionNode:
         """Add a branch. If self.attr = val, go to the given subtree."""
 
         # takes a subtree and a value, and adds that tree as a branch with that value
-        print(
-            "Just added branch {}={} as subtree {} {}".format(
-                self.attr, val, type(subtree), subtree
-            )
-        )
+        # print(
+        #     "Just added branch {}={} as subtree {} {}".format(
+        #         self.attr, val, type(subtree), subtree
+        #     )
+        # )
         self.branches[val] = subtree
-
-    def __repr__(self) -> str:
-        print("Attr: {}".format(self.attr))
 
     def display(self, indent):
         name = self.attr_name
@@ -69,6 +69,9 @@ class DecisionNode:
             print(" " * 4 * indent, name, "=", val, "==>", end=" ")
             print(subtree)
             # subtree.display(indent+1)
+
+    def __call__(self, example):
+        return self.branches[example[self.attr]](example)
 
     def __repr__(self):
         return "DecisionNode({0!r}, {1!r}, {2!r})".format(
@@ -269,3 +272,6 @@ if __name__ == "__main__":
     aima_dataset = DataSet(examples, attributes, -1)
     tree = DecisionTreeLearner(aima_dataset)
     print(tree.tree)
+    
+    # classify one example
+    print(tree.tree(["yes","yes","yes","yes","full","$","no","no","burger","30-60"]))
