@@ -28,3 +28,4 @@ chai-prep
 [x] find unique values for an attribute
 [x] calculate the frequency of each value of an attribute among a set of examples
 [] good representations for all types of data so the tree output is understandable
+

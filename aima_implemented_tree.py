@@ -202,7 +202,7 @@ class DecisionFork:
             return self.branches[attr_val](example)
         else:
             # if I do not have a branch for it, all I can do 
-            # is return my default child——a Leaf nodes
+            # is return my default child——a Leaf node
             return self.default_child(example)
 
     def add(self, val, subtree):
