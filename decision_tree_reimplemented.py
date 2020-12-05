@@ -272,6 +272,11 @@ if __name__ == "__main__":
     aima_dataset = DataSet(examples, attributes, -1)
     tree = DecisionTreeLearner(aima_dataset)
     print(tree.tree)
-    
+
     # classify one example
-    print(tree.tree(["yes","yes","yes","yes","full","$","no","no","burger","30-60"]))
+    print(
+        tree.tree(
+            ["yes", "yes", "yes", "yes", "full", "$", "no", "no", "burger", "30-60"]
+        )
+    )
+
