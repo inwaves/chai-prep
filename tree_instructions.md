@@ -9,7 +9,7 @@
    1. Conditions for stoppage:
       1. When there are no more attributes to test, return a `Leaf` of the current result
       2. When there are no more examples, return a `Leaf` of the parent's result
-      3. When all examples have the same prediction, return a `Leaf` of the current result
+      3. When all examples **have** the same prediction, return a `Leaf` of the current result
    2. Find the best attribute to test in this node
    3. Create a `DecisionNode`  with this attribute, and populate its branches (which are the attribute's possible values) with DecisionNodes containing examples for each branch and the remaining attributes.
    4. Return the current tree (= the `DecisionNode`, which points to its children).
