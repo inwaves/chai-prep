@@ -15,18 +15,18 @@ chai-prep
 [x] it finds the best attribute according to some measure
 [x] it uses the current node to expand values for that attribute
 [x] it stores the possible values as branches leading to other nodes
-- it does this until:
-  [x] there are no more attributes to check——it returns the most common class in the current node
-  [x] all the examples in this node have the same output——it returns the result
-  [x] there are no more examples (no examples had this value of the previous attribute)——it returns the result of its parent
+- it does this until:  
+  [x] there are no more attributes to check——it returns the most common class in the current node  
+  [x] all the examples in this node have the same output——it returns the result  
+  [x] there are no more examples (no examples had this value of the previous attribute)——it returns the result of its parent  
 
-### What auxiliary functions does it need?
-[x] calculate the best attribute
-[x] calculate the information gain
-    [x] calculate entropy
-[x] find examples with a given value
-[x] find unique values for an attribute
-[x] calculate the frequency of each value of an attribute among a set of examples
-[x] good representations for all types of data so the tree output is understandable
-[x] a function that classifies one example
+### What auxiliary functions does it need?  
+[x] calculate the best attribute  
+[x] calculate the information gain  
+    [x] calculate entropy  
+[x] find examples with a given value  
+[x] find unique values for an attribute  
+[x] calculate the frequency of each value of an attribute among a set of examples  
+[x] good representations for all types of data so the tree output is understandable  
+[x] a function that classifies one example  
 
